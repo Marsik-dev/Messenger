@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="687f0ed0adce4b3da17854806a1fa583" Name="Diagram1">
+        <EntityTypeShape EntityType="messager2Model.Dialog" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.Image" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.Message" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.Object" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.Sub" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.Text" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="messager2Model.User" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="messager2Model.FK_Dialog_User" ManuallyRouted="false" />
+        <AssociationConnector Association="messager2Model.FK_Image_Object" ManuallyRouted="false" />
+        <AssociationConnector Association="messager2Model.FK_Message_Object" ManuallyRouted="false" />
+        <AssociationConnector Association="messager2Model.FK_Object_User" ManuallyRouted="false" />
+        <AssociationConnector Association="messager2Model.FK_Text_Object" ManuallyRouted="false" />
+        <AssociationConnector Association="messager2Model.FK_Sub_User" ManuallyRouted="false" />
+        <AssociationConnector Association="messager2Model.FK_Sub_User1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

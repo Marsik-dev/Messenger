@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="messager1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dialog">
+    <Key>
+      <PropertyRef Name="idD" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="idD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Dialog_User" FromRole="Dialog" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="idP" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="image1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="idP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Object" Relationship="Self.FK_Image_Object" FromRole="Image" ToRole="Object" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="idP" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idDialog" Type="Int32" Nullable="false" />
+    <Property Name="idP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Object" Relationship="Self.FK_Message_Object" FromRole="Message" ToRole="Object" />
+  </EntityType>
+  <EntityType Name="Object">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Image" Relationship="Self.FK_Image_Object" FromRole="Object" ToRole="Image" />
+    <NavigationProperty Name="Message" Relationship="Self.FK_Message_Object" FromRole="Object" ToRole="Message" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Object_User" FromRole="Object" ToRole="User" />
+    <NavigationProperty Name="Text" Relationship="Self.FK_Text_Object" FromRole="Object" ToRole="Text" />
+  </EntityType>
+  <EntityType Name="Sub">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="idSub" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Sub_User" FromRole="Sub" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Sub_User1" FromRole="Sub" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Text">
+    <Key>
+      <PropertyRef Name="idP" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="text1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Object" Relationship="Self.FK_Text_Object" FromRole="Text" ToRole="Object" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Dialog" Relationship="Self.FK_Dialog_User" FromRole="User" ToRole="Dialog" />
+    <NavigationProperty Name="Object" Relationship="Self.FK_Object_User" FromRole="User" ToRole="Object" />
+    <NavigationProperty Name="Sub" Relationship="Self.FK_Sub_User" FromRole="User" ToRole="Sub" />
+    <NavigationProperty Name="Sub1" Relationship="Self.FK_Sub_User1" FromRole="User" ToRole="Sub" />
+  </EntityType>
+  <Association Name="FK_Dialog_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dialog" Type="Self.Dialog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Dialog">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_Object">
+    <End Role="Object" Type="Self.Object" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Object">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Object">
+    <End Role="Object" Type="Self.Object" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Object">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Object_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Object" Type="Self.Object" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Object">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Text_Object">
+    <End Role="Object" Type="Self.Object" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Text" Type="Self.Text" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Object">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Text">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Sub" Type="Self.Sub" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sub">
+        <PropertyRef Name="idSub" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Sub" Type="Self.Sub" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sub">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Mess1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dialog" EntityType="Self.Dialog" />
+    <EntitySet Name="Image" EntityType="Self.Image" />
+    <EntitySet Name="Message" EntityType="Self.Message" />
+    <EntitySet Name="Object" EntityType="Self.Object" />
+    <EntitySet Name="Sub" EntityType="Self.Sub" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Text" EntityType="Self.Text" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Dialog_User" Association="Self.FK_Dialog_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Dialog" EntitySet="Dialog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_Object" Association="Self.FK_Image_Object">
+      <End Role="Object" EntitySet="Object" />
+      <End Role="Image" EntitySet="Image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Object" Association="Self.FK_Message_Object">
+      <End Role="Object" EntitySet="Object" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Object_User" Association="Self.FK_Object_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Object" EntitySet="Object" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Text_Object" Association="Self.FK_Text_Object">
+      <End Role="Object" EntitySet="Object" />
+      <End Role="Text" EntitySet="Text" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub_User" Association="Self.FK_Sub_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Sub" EntitySet="Sub" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub_User1" Association="Self.FK_Sub_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Sub" EntitySet="Sub" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

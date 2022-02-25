@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище messager1ModelContainer" CdmEntityContainer="Mess1">
+    <EntitySetMapping Name="Dialog">
+      <EntityTypeMapping TypeName="messager1Model.Dialog">
+        <MappingFragment StoreEntitySet="Dialog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idD" ColumnName="idD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Image">
+      <EntityTypeMapping TypeName="messager1Model.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="image1" ColumnName="image" />
+          <ScalarProperty Name="idP" ColumnName="idP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Message">
+      <EntityTypeMapping TypeName="messager1Model.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idDialog" ColumnName="idDialog" />
+          <ScalarProperty Name="idP" ColumnName="idP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Object">
+      <EntityTypeMapping TypeName="messager1Model.Object">
+        <MappingFragment StoreEntitySet="Object">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub">
+      <EntityTypeMapping TypeName="messager1Model.Sub">
+        <MappingFragment StoreEntitySet="Sub">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idSub" ColumnName="idSub" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="messager1Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Text">
+      <EntityTypeMapping TypeName="messager1Model.Text">
+        <MappingFragment StoreEntitySet="Text">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text1" ColumnName="text" />
+          <ScalarProperty Name="idP" ColumnName="idP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="messager1Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
