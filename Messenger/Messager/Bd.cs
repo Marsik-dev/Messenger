@@ -29,7 +29,7 @@ namespace Messager
             Mess2 mess2 = new Mess2();
 
             if (login.Length < 6 || pass.Length < 8 || name.Length < 6) return regResult.lenght;
-            //if (!new Regex("[0-9]").IsMatch(pass)) return regResult.symbols;
+            if (!new Regex("[0-9]").IsMatch(pass)) return regResult.symbols;
 
             switch (messager)
             {
@@ -125,8 +125,8 @@ namespace Messager
 
         }
 
-        public static User getUserMess1(int id) => (from user in new Mess1().User where user.id == id select user).First();
-        public static User getUserMess2(int id) => (from user in new Mess2().User where user.id == id select user).First();
+        public static User getUserMess1(int id) => (from user in new Mess1().User where user.id == id select user).FirstOrDefault();
+        public static User getUserMess2(int id) => (from user in new Mess2().User where user.id == id select user).FirstOrDefault();
 
         public static List<User> getUserMess1(string name) => (from user in new Mess1().User where user.name.Contains(name) && user.id != id_first select user).ToList();
         public static List<User> getUserMess2(string name) => (from user in new Mess2().User where user.name.Contains(name) && user.id != id_second select user).ToList();
